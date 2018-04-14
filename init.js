@@ -9,7 +9,7 @@ const async = require('async')
 const mongoUrl = argv.db // 'mongodb://localhost:27017/nyc'
 const innerLayerCollection = argv.innerLayer // 'buildings'
 const outerLayerCollection = argv.outerLayer // 'lots'
-const outerLayerAttributes = argv.outerLayerAttributes // 'borough code'
+const outerLayerAttributes = argv.outerLayerAttributes.map(function(attribute){return attribute.replace(',', '')})  // 'borough code', need to strip out ','
 const outputLayerCollection = argv.outputLayer // 'buildings_spatialJoin'
 
 var workerBatchSize = 1000 // Size of features to be sent at once by master to workers for processing
